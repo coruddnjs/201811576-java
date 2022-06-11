@@ -2,6 +2,8 @@ package test;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
+
 import javax.swing.*;
 
 public class Signup extends JFrame{
@@ -108,6 +110,7 @@ public class Signup extends JFrame{
 		
 		
 		Back.addActionListener(new Backs());
+		Sign.addActionListener(new sign_up());
 		
 		c.add(co);
 		c.add(das);
@@ -139,5 +142,42 @@ public class Signup extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
+		}
+		class sign_up implements ActionListener{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				database db;
+				String phonenum = (P1.getText()+"-"+P2.getText()+"-"+P3.getText());
+				String names = name_d.getText();
+				int RRN =  Integer.parseInt(Int_d.getText());
+				String ID = ID_d.getText();
+				String PW = PW_d.getText();
+				String table = "member";
+				String license = cb.getSelectedItem().toString();
+				JOptionPane err = new JOptionPane();
+				String[] result;
+				
+				String sign = e.getActionCommand();
+				if(sign.equals("가입하기")) {
+					try {
+						db = new database();
+						result =  db.select(table,6,ID);
+						if(result[2]==null) {
+							db.insertDB(table,names,RRN,ID,PW,phonenum,license);
+							dispose();
+							Mainscreen m = new Mainscreen();
+						}
+						else if(result[2].equals(ID)){
+							err.showMessageDialog(null,"이미 있는 ID 입니다.");
+							dispose();
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+			
 		}
 }

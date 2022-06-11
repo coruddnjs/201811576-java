@@ -9,14 +9,14 @@ class Mainscreen extends JFrame{
 	
 	JButton b1 = new JButton("차량 예약");
 	JButton b2 = new JButton("예약 확인");
-	JButton b3 = new JButton("예약 취소");
-	JButton b4 = new JButton("차량 검색");
+	JButton b4 = new JButton("예약 변경");
+	JButton b5 = new JButton("회원 탈퇴");
 	
 	
 	
 	public Mainscreen() {
-		setTitle("welcome"); 
-		setSize(300,250);
+		setTitle("MAIN"); 
+		setSize(300,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c.setLayout(null);
 		
@@ -30,20 +30,21 @@ class Mainscreen extends JFrame{
 		b2.setHorizontalAlignment(JButton.LEFT);
 		c.add(b2);
 		
-		b3.setLocation(100,90);
-		b3.setSize(size,20);
-		b3.setHorizontalAlignment(JButton.LEFT);
-		c.add(b3);
 		
-		b4.setLocation(100,130);
+		b4.setLocation(100,90);
 		b4.setSize(size,20);
 		b4.setHorizontalAlignment(JButton.LEFT);
 		c.add(b4);
 		
+		b5.setLocation(100,130);
+		b5.setSize(size,20);
+		b5.setHorizontalAlignment(JButton.LEFT);
+		c.add(b5);
+		
 		b1.addActionListener(new Button1());
 		b2.addActionListener(new Button2());
-		b3.addActionListener(new Button3());
 		b4.addActionListener(new Button4());
+		b5.addActionListener(new Button5());
 		setVisible(true);
 		
 	}
@@ -51,7 +52,7 @@ class Mainscreen extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			String car1 = e.getActionCommand();
 			if(car1.equals("차량 예약")) {
-				Signup a = new Signup();
+				Reservation R = new Reservation();
 			}
 		}
 	}
@@ -59,23 +60,24 @@ class Mainscreen extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			String car1 = e.getActionCommand();
 			if(car1.equals("예약 확인")) {
-				Signup a = new Signup();
-			}
-		}
-	}
-	class Button3 implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			String car1 = e.getActionCommand();
-			if(car1.equals("예약 취소")) {
-				Signup a = new Signup();
+				check c = new check();
 			}
 		}
 	}
 	class Button4 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			String car1 = e.getActionCommand();
-			if(car1.equals("차량 검색")) {
-				Signup a = new Signup();
+			if(car1.equals("예약 변경")) {
+				update u = new update();
+			}
+		}
+	}
+	class Button5 implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			String del = e.getActionCommand();
+			if(del.equals("회원 탈퇴")) {
+				Delete D = new Delete();
+				
 			}
 		}
 	}
